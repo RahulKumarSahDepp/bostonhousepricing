@@ -3,9 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Boston Housing Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .prediction {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: green;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello</h1>
+    <h1>Boston Housing Price Prediction</h1>
+    <form action="/predict" method="POST">
+        <label>CRIM (Per capita crime rate by town):</label>
+        <input type="number" step="any" name="CRIM" required>
+
+        <label>ZN (Proportion of residential land zoned for lots > 25,000 sq.ft.):</label>
+        <input type="number" step="any" name="ZN" required>
+
+        <label>INDUS (Proportion of non-retail business acres per town):</label>
+        <input type="number" step="any" name="INDUS" required>
+
+        <label>CHAS (Charles River dummy variable 1 if tract bounds river; 0 otherwise):</label>
+        <input type="number" step="any" name="CHAS" required>
+
+        <label>NOX (Nitric oxides concentration):</label>
+        <input type="number" step="any" name="NOX" required>
+
+        <label>RM (Average number of rooms per dwelling):</label>
+        <input type="number" step="any" name="RM" required>
+
+        <label>AGE (Proportion of owner-occupied units built prior to 1940):</label>
+        <input type="number" step="any" name="AGE" required>
+
+        <label>DIS (Weighted distances to five Boston employment centres):</label>
+        <input type="number" step="any" name="DIS" required>
+
+        <label>RAD (Index of accessibility to radial highways):</label>
+        <input type="number" step="any" name="RAD" required>
+
+        <label>TAX (Full-value property-tax rate per $10,000):</label>
+        <input type="number" step="any" name="TAX" required>
+
+        <label>PTRATIO (Pupil-teacher ratio by town):</label>
+        <input type="number" step="any" name="PTRATIO" required>
+
+        <label>B (1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town):</label>
+        <input type="number" step="any" name="B" required>
+
+        <label>LSTAT (% lower status of the population):</label>
+        <input type="number" step="any" name="LSTAT" required>
+
+        <button type="submit">Predict Price</button>
+    </form>
+
+    {% if prediction_text %}
+    <div class="prediction">
+        {{ prediction_text }}
+    </div>
+    {% endif %}
 </body>
 </html>
